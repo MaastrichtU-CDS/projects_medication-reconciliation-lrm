@@ -2168,7 +2168,7 @@ for(k in 1:nrow(fit_1.app.pt_stats)) {
                                                     (fit_1.app.pt_stats[k, "fit_1.app.pt"] / (1 - fit_1.app.pt_stats[k, "fit_1.app.pt"]))
   
   fit_1.app.pt_stats[k, "fit_1.app.net_benefit.all"] <- fit_1.app.pt_stats[k, "fit_1.app.Ey"] - 
-                                                        ( ( fit_1.app.pt_stats[k, "fit_1.app.pt"] / (1 - fit_1.app.pt_stats[k, "fit_1.app.pt"]) ) * (1 - fit_1.app.pt_stats[k, "fit_1.app.Ey"] ) )
+                                                        ((fit_1.app.pt_stats[k, "fit_1.app.pt"] / (1 - fit_1.app.pt_stats[k, "fit_1.app.pt"])) * (1 - fit_1.app.pt_stats[k, "fit_1.app.Ey"]))
   
   fit_1.app.pt_stats[k, "fit_1.app.acc"] <- (fit_1.app.pt_stats[k, "fit_1.app.tp"] +  fit_1.app.pt_stats[k, "fit_1.app.tn"]) /
                                             (fit_1.app.pt_stats[k, "fit_1.app.tp"] + fit_1.app.pt_stats[k, "fit_1.app.tn"] + fit_1.app.pt_stats[k, "fit_1.app.fp"] + fit_1.app.pt_stats[k, "fit_1.app.fn"])
@@ -3222,7 +3222,7 @@ for(k in 1:nrow(fit_2.app.pt_stats)) {
                                                     (fit_2.app.pt_stats[k, "fit_2.app.pt"] / (1 - fit_2.app.pt_stats[k, "fit_2.app.pt"]))
   
   fit_2.app.pt_stats[k, "fit_2.app.net_benefit.all"] <- fit_2.app.pt_stats[k, "fit_2.app.Ey"] - 
-                                                        ( ( fit_2.app.pt_stats[k, "fit_2.app.pt"] / (1 - fit_2.app.pt_stats[k, "fit_2.app.pt"]) ) * (1 - fit_2.app.pt_stats[k, "fit_2.app.Ey"] ) )
+                                                        ((fit_2.app.pt_stats[k, "fit_2.app.pt"] / (1 - fit_2.app.pt_stats[k, "fit_2.app.pt"])) * (1 - fit_2.app.pt_stats[k, "fit_2.app.Ey"]))
   
   fit_2.app.pt_stats[k, "fit_2.app.acc"] <- (fit_2.app.pt_stats[k, "fit_2.app.tp"] +  fit_2.app.pt_stats[k, "fit_2.app.tn"]) /
                                             (fit_2.app.pt_stats[k, "fit_2.app.tp"] + fit_2.app.pt_stats[k, "fit_2.app.tn"] + fit_2.app.pt_stats[k, "fit_2.app.fp"] + fit_2.app.pt_stats[k, "fit_2.app.fn"])
