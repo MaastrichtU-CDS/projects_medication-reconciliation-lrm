@@ -187,8 +187,7 @@ ui <- fluidPage(
       )
     )
   ),
-  HTML("<i> Please note further research is needed before implementing this model in clinical practice. </i> <br> 
-        <i> To enhance data protection, please download the source code <a href = https://github.com/MaastrichtU-CDS/projects_medication-reconciliation-lrm/app> here</a> and run the app locally.</i> <br> <br>")
+  HTML("<i> Please note further research is needed before implementing this model in clinical practice. </i> <br> <br>")
 )
 
 # Server ----
