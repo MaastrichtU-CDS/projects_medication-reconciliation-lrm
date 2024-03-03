@@ -6,10 +6,11 @@ set.seed(813)
 
 library(readxl)
 library(ggplot2)
+library(cowplot)
 library(pmsampsize)
 library(rms)
 
-# Data ----
+# Data ---- 
 
 data <- ...
 
@@ -36,8 +37,8 @@ data$age.std <- data$age.centered / sd(data$age)
 
 names(data)[names(data) == "A1a"] <- "sex.male_1"
 data$sex.male_1 <- ifelse(data$sex.male_1 == 2,
-                             0, 
-                             data$sex.male_1)
+                          0, 
+                          data$sex.male_1)
 
 table(data$sex.male_1, exclude = NULL)
 prop.table(table(data$sex.male_1, exclude = NULL))
@@ -683,14 +684,14 @@ data$n_visits_out_current_specialty_36m_MUMC.ord <- factor(data$n_visits_out_cur
                                                                           "2",
                                                                           "3+"))
 data$n_visits_out_current_specialty_36m_MUMC.1_1 <- ifelse(data$n_visits_out_current_specialty_36m_MUMC.ord == 1,
-                                                               1,
-                                                               0)
+                                                           1,
+                                                           0)
 data$n_visits_out_current_specialty_36m_MUMC.2_1 <- ifelse(data$n_visits_out_current_specialty_36m_MUMC.ord == 2,
-                                                               1,
-                                                               0)
+                                                           1,
+                                                           0)
 data$n_visits_out_current_specialty_36m_MUMC.3_or_above_1 <- ifelse(data$n_visits_out_current_specialty_36m_MUMC.ord == 3,
-                                                                        1,
-                                                                        0)
+                                                                    1,
+                                                                    0)
 
 table(data$n_visits_out_current_specialty_36m_MUMC.ord, exclude = NULL)
 prop.table(table(data$n_visits_out_current_specialty_36m_MUMC.ord, exclude = NULL))
@@ -1184,7 +1185,7 @@ ggplot(data, aes(x = n_specialty_MUMC_external_hospital)) +
 data$n_specialty_MUMC_external_hospital.centered <- data$n_specialty_MUMC_external_hospital - mean(data$n_specialty_MUMC_external_hospital)
 data$n_specialty_MUMC_external_hospital.std <- data$n_specialty_MUMC_external_hospital.centered / sd(data$n_specialty_MUMC_external_hospital)
 
-## Consult ----
+## Consultation ----
 
 names(data)[names(data) == "B10c"] <- "medicine_prescribed_during_consult.yes_1"
 data$medicine_prescribed_during_consult.yes_1 <- ifelse(is.na(data$medicine_prescribed_during_consult.yes_1),
@@ -1571,38 +1572,39 @@ for (i in 1:nrow(data_pmsampsize)) {
                                                      prevalence = data_pmsampsize[i, "prevalence"])[["sample_size"]]
 }
 
-ggplot(data_pmsampsize, aes(x = n_parameters, y = n_participants, colour = factor(prevalence), shape = factor(RsqN))) + 
-  geom_point() +
-  geom_hline(yintercept = 2295, linetype = 1) +
-  annotate("text",
-           x = 1,
-           y = 2750,
-           label = "2295") +
-  scale_x_continuous(name = "Number of parameters",
-                     breaks = seq(0, 30, 1),
-                     labels = seq(0, 30, 1)) +
-  scale_y_continuous(name = "Number of participants",
-                     breaks = seq(0, 23000, 1000),
-                     labels = seq(0, 23000, 1000)) +
-  scale_colour_discrete(name = "Outcome proportion") +
-  scale_shape_discrete(name = expression("R"^2*""["Nagelkerke"]),
-                       labels = c("0.05",
-                                  "0.10",
-                                  "0.15",
-                                  "0.20")) +
-  theme_minimal() 
+plot.pmsampsize <- 
+  ggplot(data_pmsampsize, aes(x = n_parameters, y = n_participants, colour = factor(prevalence), shape = factor(RsqN))) + 
+    geom_point() +
+    geom_hline(yintercept = 2289, linetype = 1) +
+    annotate("text",
+             x = 1,
+             y = 2750,
+             label = "2289") +
+    scale_x_continuous(name = "Number of parameters",
+                       breaks = seq(0, 30, 1),
+                       labels = seq(0, 30, 1)) +
+    scale_y_continuous(name = "Number of participants",
+                       breaks = seq(0, 23000, 1000),
+                       labels = seq(0, 23000, 1000)) +
+    scale_colour_discrete(name = "Outcome proportion") +
+    scale_shape_discrete(name = expression("R"^2*""["Nagelkerke"]),
+                         labels = c("0.05",
+                                    "0.10",
+                                    "0.15",
+                                    "0.20")) +
+    theme_minimal() 
 
-max(subset(data_pmsampsize, (n_participants <= 2295) 
+max(subset(data_pmsampsize, (n_participants <= 2289) 
                             & 
                             (prevalence == 0.03) 
                             & 
                             (RsqN == 0.05))$n_parameters)
-max(subset(data_pmsampsize, (n_participants <= 2295) 
+max(subset(data_pmsampsize, (n_participants <= 2289) 
                             & 
                             (prevalence == 0.05) 
                             & 
                             (RsqN == 0.20))$n_parameters)
-max(subset(data_pmsampsize, (n_participants <= 2295) 
+max(subset(data_pmsampsize, (n_participants <= 2289) 
                             & 
                             (prevalence == 0.04) 
                             & 
@@ -1762,6 +1764,18 @@ unadj.imp <- aregImpute(~ y +
                         n.impute = n_imp,
                         nk = 3)
 
+for(i in 1:n_imp) {
+  print(paste("imputation", i))
+  print(table(impute.transcan(unadj.imp, imputation = i, data = data, list.out = TRUE, pr = FALSE)$eGFR.below_60_1))
+  print(prop.table(table(impute.transcan(unadj.imp, imputation = i, data = data, list.out = TRUE, pr = FALSE)$eGFR.below_60_1)))
+}
+
+for(i in 1:n_imp) {
+  print(paste("imputation", i))
+  print(table(impute.transcan(unadj.imp, imputation = i, data = data, list.out = TRUE, pr = FALSE)$health_literacy_composite.insufficient_1))
+  print(prop.table(table(impute.transcan(unadj.imp, imputation = i, data = data, list.out = TRUE, pr = FALSE)$health_literacy_composite.insufficient_1)))
+}
+
 ### age.std ----
 
 unadj.age.std <- fit.mult.impute(y ~
@@ -1898,6 +1912,18 @@ fit_1.imp <- aregImpute(~ y +
                         n.impute = n_imp,
                         nk = 3)
 
+for(i in 1:n_imp) {
+  print(paste("imputation", i))
+  print(table(impute.transcan(fit_1.imp, imputation = i, data = data, list.out = TRUE, pr = FALSE)$eGFR.below_60_1))
+  print(prop.table(table(impute.transcan(fit_1.imp, imputation = i, data = data, list.out = TRUE, pr = FALSE)$eGFR.below_60_1)))
+}
+
+for(i in 1:n_imp) {
+  print(paste("imputation", i))
+  print(table(impute.transcan(fit_1.imp, imputation = i, data = data, list.out = TRUE, pr = FALSE)$health_literacy_composite.insufficient_1))
+  print(prop.table(table(impute.transcan(fit_1.imp, imputation = i, data = data, list.out = TRUE, pr = FALSE)$health_literacy_composite.insufficient_1)))
+}
+
 fit_1.stacked_imp <- list()
 for (i in 1:n_imp) {
   fit_1.stacked_imp[[i]] <- impute.transcan(fit_1.imp, 
@@ -1926,8 +1952,6 @@ fit_1
 exp(fit_1$coefficients)
 exp(fit_1$coefficients - 1.96 * sqrt(diag(fit_1$var)))
 exp(fit_1$coefficients + 1.96 * sqrt(diag(fit_1$var)))
-
-saveRDS(fit_1, "...")
 
 fit_1.stacked_imp.fit_1 <- list()
 for(i in 1:n_imp) {
@@ -2055,20 +2079,21 @@ colnames(y.fit_1.pred_prob.mean_imp)[2] <- "fit_1.pred_prob.mean_imp"
 summary(subset(y.fit_1.pred_prob.mean_imp, y == 0)$fit_1.pred_prob.mean_imp)
 summary(subset(y.fit_1.pred_prob.mean_imp, y == 1)$fit_1.pred_prob.mean_imp)
 
-saveRDS(y.fit_1.pred_prob.mean_imp, "...")
-
-ggplot(y.fit_1.pred_prob.mean_imp, aes(x = fit_1.pred_prob.mean_imp, y = y, group = y)) +
-  geom_boxplot(width = 0.5) +
-  scale_x_continuous(name = "Predicted probability (%)",
-                     limits = c(0, 0.30),
-                     breaks = seq(0, 0.30, 0.01),
-                     labels = seq(0, 0.30, 0.01) * 100) +
-  scale_y_continuous(name = NULL,
-                     breaks = c(0, 1),
-                     labels = c("0" = "No medication policy change",
-                                "1" = "Medication policy change")) +
-  theme_bw() +
-  theme(legend.position = "none")
+plot.fit_1 <- 
+  ggplot(y.fit_1.pred_prob.mean_imp, aes(x = fit_1.pred_prob.mean_imp, y = y, group = y)) +
+    geom_boxplot(width = 0.5) +
+    scale_x_continuous(name = "Predicted probability (%)",
+                       limits = c(0, 0.30),
+                       breaks = seq(0, 0.30, 0.01),
+                       labels = seq(0, 0.30, 0.01) * 100) +
+    scale_y_continuous(name = NULL,
+                       breaks = c(0, 1),
+                       labels = c("0" = "No medication policy change",
+                                  "1" = "Medication policy change")) +
+    ggtitle("Model 1") +
+    theme_bw() +
+    theme(legend.position = "none",
+          plot.title = element_text(face = "bold"))
 
 ### Screening rate using pt ----
 
@@ -2168,7 +2193,7 @@ for(k in 1:nrow(fit_1.app.pt_stats)) {
                                                     (fit_1.app.pt_stats[k, "fit_1.app.pt"] / (1 - fit_1.app.pt_stats[k, "fit_1.app.pt"]))
   
   fit_1.app.pt_stats[k, "fit_1.app.net_benefit.all"] <- fit_1.app.pt_stats[k, "fit_1.app.Ey"] - 
-                                                        ((fit_1.app.pt_stats[k, "fit_1.app.pt"] / (1 - fit_1.app.pt_stats[k, "fit_1.app.pt"])) * (1 - fit_1.app.pt_stats[k, "fit_1.app.Ey"]))
+                                                        ( ( fit_1.app.pt_stats[k, "fit_1.app.pt"] / (1 - fit_1.app.pt_stats[k, "fit_1.app.pt"]) ) * (1 - fit_1.app.pt_stats[k, "fit_1.app.Ey"] ) )
   
   fit_1.app.pt_stats[k, "fit_1.app.acc"] <- (fit_1.app.pt_stats[k, "fit_1.app.tp"] +  fit_1.app.pt_stats[k, "fit_1.app.tn"]) /
                                             (fit_1.app.pt_stats[k, "fit_1.app.tp"] + fit_1.app.pt_stats[k, "fit_1.app.tn"] + fit_1.app.pt_stats[k, "fit_1.app.fp"] + fit_1.app.pt_stats[k, "fit_1.app.fn"])
@@ -2945,27 +2970,32 @@ fit_1.oc.pt_stats.mean_imp
 ### NCC MERP index ----
 
 table(data$y, data$NCC_MERP_index.E_or_above_1, exclude = NULL)
-54 / (54 + 27 + 8)
-27 / (54 + 27 + 8)
-8 / (54 + 27 + 8)
+54 / (54 + 26 + 8)
+26 / (54 + 26 + 8)
+8 / (54 + 26 + 8)
 
 summary(subset(data, NCC_MERP_index.E_or_above_1 == 0)$fit_1.pred_prob)
 summary(subset(data, NCC_MERP_index.E_or_above_1 == 1)$fit_1.pred_prob)
 
+sum(is.na(subset(data, NCC_MERP_index.E_or_above_1 == 0)$fit_1.pred_prob))
+14 / 54
+sum(is.na(subset(data, NCC_MERP_index.E_or_above_1 == 1)$fit_1.pred_prob))
+7 / 26
+
 nrow(subset(data, (NCC_MERP_index.E_or_above_1 == 0) & (fit_1.pred_prob < 0.0333)))
 nrow(subset(data, (NCC_MERP_index.E_or_above_1 == 0) & (fit_1.pred_prob < 0.0333))) / 40
 nrow(subset(data, (NCC_MERP_index.E_or_above_1 == 1) & (fit_1.pred_prob < 0.0333)))
-nrow(subset(data, (NCC_MERP_index.E_or_above_1 == 1) & (fit_1.pred_prob < 0.0333))) / 20
+nrow(subset(data, (NCC_MERP_index.E_or_above_1 == 1) & (fit_1.pred_prob < 0.0333))) / 19
 
 nrow(subset(data, (NCC_MERP_index.E_or_above_1 == 0) & (fit_1.pred_prob < 0.0500)))
 nrow(subset(data, (NCC_MERP_index.E_or_above_1 == 0) & (fit_1.pred_prob < 0.0500))) / 40
 nrow(subset(data, (NCC_MERP_index.E_or_above_1 == 1) & (fit_1.pred_prob < 0.0500)))
-nrow(subset(data, (NCC_MERP_index.E_or_above_1 == 1) & (fit_1.pred_prob < 0.0500))) / 20
+nrow(subset(data, (NCC_MERP_index.E_or_above_1 == 1) & (fit_1.pred_prob < 0.0500))) / 19
 
 nrow(subset(data, (NCC_MERP_index.E_or_above_1 == 0) & (fit_1.pred_prob < 0.1000)))
 nrow(subset(data, (NCC_MERP_index.E_or_above_1 == 0) & (fit_1.pred_prob < 0.1000))) / 40
 nrow(subset(data, (NCC_MERP_index.E_or_above_1 == 1) & (fit_1.pred_prob < 0.1000)))
-nrow(subset(data, (NCC_MERP_index.E_or_above_1 == 1) & (fit_1.pred_prob < 0.1000))) / 20
+nrow(subset(data, (NCC_MERP_index.E_or_above_1 == 1) & (fit_1.pred_prob < 0.1000))) / 19
 
 ## Model 2 ----
 
@@ -2986,6 +3016,18 @@ fit_2.imp <- aregImpute(~ y +
                         n.impute = n_imp,
                         nk = 3)
 
+for(i in 1:n_imp) {
+  print(paste("imputation", i))
+  print(table(impute.transcan(fit_2.imp, imputation = i, data = data, list.out = TRUE, pr = FALSE)$eGFR.below_60_1))
+  print(prop.table(table(impute.transcan(fit_2.imp, imputation = i, data = data, list.out = TRUE, pr = FALSE)$eGFR.below_60_1)))
+}
+
+for(i in 1:n_imp) {
+  print(paste("imputation", i))
+  print(table(impute.transcan(fit_2.imp, imputation = i, data = data, list.out = TRUE, pr = FALSE)$health_literacy_composite.insufficient_1))
+  print(prop.table(table(impute.transcan(fit_2.imp, imputation = i, data = data, list.out = TRUE, pr = FALSE)$health_literacy_composite.insufficient_1)))
+}
+
 fit_2.stacked_imp <- list()
 for (i in 1:n_imp) {
   fit_2.stacked_imp[[i]] <- impute.transcan(fit_2.imp, 
@@ -2999,6 +3041,51 @@ for (i in 1:n_imp) {
 
 fit_2 <- fit.mult.impute(y ~
                            age.std +
+                           sex.male_1 +
+                           n_prescribed_medicines.std +
+                           high_risk_medicines.yes_1 +
+                           eGFR.below_60_1 +                  
+                           n_specialty_MUMC.std +
+                           health_literacy_composite.insufficient_1,
+                         lrm,
+                         fit_2.imp,
+                         data = data)
+fit_2
+exp(fit_2$coefficients)
+exp(fit_2$coefficients - 1.96 * sqrt(diag(fit_2$var)))
+exp(fit_2$coefficients + 1.96 * sqrt(diag(fit_2$var)))
+
+fit_2 <- fit.mult.impute(y ~
+                           age.std +
+                           sex.male_1 +
+                           n_prescribed_medicines.std +
+                           high_risk_medicines.yes_1 +
+                           n_specialty_MUMC.std +
+                           health_literacy_composite.insufficient_1,
+                         lrm,
+                         fit_2.imp,
+                         data = data)
+fit_2
+exp(fit_2$coefficients)
+exp(fit_2$coefficients - 1.96 * sqrt(diag(fit_2$var)))
+exp(fit_2$coefficients + 1.96 * sqrt(diag(fit_2$var)))
+
+fit_2 <- fit.mult.impute(y ~
+                           age.std +
+                           n_prescribed_medicines.std +
+                           high_risk_medicines.yes_1 +
+                           n_specialty_MUMC.std +
+                           health_literacy_composite.insufficient_1,
+                         lrm,
+                         fit_2.imp,
+                         data = data)
+fit_2
+exp(fit_2$coefficients)
+exp(fit_2$coefficients - 1.96 * sqrt(diag(fit_2$var)))
+exp(fit_2$coefficients + 1.96 * sqrt(diag(fit_2$var)))
+
+fit_2 <- fit.mult.impute(y ~
+                           age.std +
                            n_prescribed_medicines.std +
                            high_risk_medicines.yes_1 +
                            health_literacy_composite.insufficient_1,
@@ -3009,8 +3096,6 @@ fit_2
 exp(fit_2$coefficients)
 exp(fit_2$coefficients - 1.96 * sqrt(diag(fit_2$var)))
 exp(fit_2$coefficients + 1.96 * sqrt(diag(fit_2$var)))
-
-saveRDS(fit_2, "...")
 
 fit_2.stacked_imp.fit_2 <- list()
 for(i in 1:n_imp) {
@@ -3113,20 +3198,26 @@ colnames(y.fit_2.pred_prob.mean_imp)[2] <- "fit_2.pred_prob.mean_imp"
 summary(subset(y.fit_2.pred_prob.mean_imp, y == 0)$fit_2.pred_prob.mean_imp)
 summary(subset(y.fit_2.pred_prob.mean_imp, y == 1)$fit_2.pred_prob.mean_imp)
 
-saveRDS(y.fit_2.pred_prob.mean_imp, "...")
+plot.fit_2 <- 
+  ggplot(y.fit_2.pred_prob.mean_imp, aes(x = fit_2.pred_prob.mean_imp, y = y, group = y)) +
+    geom_boxplot(width = 0.5) +
+    scale_x_continuous(name = "Predicted probability (%)",
+                       limits = c(0, 0.30),
+                       breaks = seq(0, 0.30, 0.01),
+                       labels = seq(0, 0.30, 0.01) * 100) +
+    scale_y_continuous(name = NULL,
+                       breaks = c(0, 1),
+                       labels = c("0" = "No medication policy change",
+                                  "1" = "Medication policy change")) +
+    ggtitle("Model 2") +
+    theme_bw() +
+    theme(legend.position = "none",
+          plot.title = element_text(face = "bold")) 
 
-ggplot(y.fit_2.pred_prob.mean_imp, aes(x = fit_2.pred_prob.mean_imp, y = y, group = y)) +
-  geom_boxplot(width = 0.5) +
-  scale_x_continuous(name = "Predicted probability (%)",
-                     limits = c(0, 0.30),
-                     breaks = seq(0, 0.30, 0.01),
-                     labels = seq(0, 0.30, 0.01) * 100) +
-  scale_y_continuous(name = NULL,
-                     breaks = c(0, 1),
-                     labels = c("0" = "No medication policy change",
-                                "1" = "Medication policy change")) +
-  theme_bw() +
-  theme(legend.position = "none")
+plot.fit_1_and_fit_2 <- plot_grid(plot.fit_1,
+                                  plot.fit_2,
+                                  nrow = 2,
+                                  ncol = 1)
 
 ### Screening rate using pt ----
 
@@ -3222,7 +3313,7 @@ for(k in 1:nrow(fit_2.app.pt_stats)) {
                                                     (fit_2.app.pt_stats[k, "fit_2.app.pt"] / (1 - fit_2.app.pt_stats[k, "fit_2.app.pt"]))
   
   fit_2.app.pt_stats[k, "fit_2.app.net_benefit.all"] <- fit_2.app.pt_stats[k, "fit_2.app.Ey"] - 
-                                                        ((fit_2.app.pt_stats[k, "fit_2.app.pt"] / (1 - fit_2.app.pt_stats[k, "fit_2.app.pt"])) * (1 - fit_2.app.pt_stats[k, "fit_2.app.Ey"]))
+                                                        ( ( fit_2.app.pt_stats[k, "fit_2.app.pt"] / (1 - fit_2.app.pt_stats[k, "fit_2.app.pt"]) ) * (1 - fit_2.app.pt_stats[k, "fit_2.app.Ey"] ) )
   
   fit_2.app.pt_stats[k, "fit_2.app.acc"] <- (fit_2.app.pt_stats[k, "fit_2.app.tp"] +  fit_2.app.pt_stats[k, "fit_2.app.tn"]) /
                                             (fit_2.app.pt_stats[k, "fit_2.app.tp"] + fit_2.app.pt_stats[k, "fit_2.app.tn"] + fit_2.app.pt_stats[k, "fit_2.app.fp"] + fit_2.app.pt_stats[k, "fit_2.app.fn"])
@@ -3994,20 +4085,25 @@ fit_2.oc.pt_stats.mean_imp
 summary(subset(data, NCC_MERP_index.E_or_above_1 == 0)$fit_2.pred_prob)
 summary(subset(data, NCC_MERP_index.E_or_above_1 == 1)$fit_2.pred_prob)
 
+sum(is.na(subset(data, NCC_MERP_index.E_or_above_1 == 0)$fit_2.pred_prob))
+1 / 54
+sum(is.na(subset(data, NCC_MERP_index.E_or_above_1 == 1)$fit_2.pred_prob))
+1 / 26
+
 nrow(subset(data, (NCC_MERP_index.E_or_above_1 == 0) & (fit_2.pred_prob < 0.0333)))
 nrow(subset(data, (NCC_MERP_index.E_or_above_1 == 0) & (fit_2.pred_prob < 0.0333))) / 53
 nrow(subset(data, (NCC_MERP_index.E_or_above_1 == 1) & (fit_2.pred_prob < 0.0333)))
-nrow(subset(data, (NCC_MERP_index.E_or_above_1 == 1) & (fit_2.pred_prob < 0.0333))) / 26
+nrow(subset(data, (NCC_MERP_index.E_or_above_1 == 1) & (fit_2.pred_prob < 0.0333))) / 25
 
 nrow(subset(data, (NCC_MERP_index.E_or_above_1 == 0) & (fit_2.pred_prob < 0.0500)))
 nrow(subset(data, (NCC_MERP_index.E_or_above_1 == 0) & (fit_2.pred_prob < 0.0500))) / 53
 nrow(subset(data, (NCC_MERP_index.E_or_above_1 == 1) & (fit_2.pred_prob < 0.0500)))
-nrow(subset(data, (NCC_MERP_index.E_or_above_1 == 1) & (fit_2.pred_prob < 0.0500))) / 26
+nrow(subset(data, (NCC_MERP_index.E_or_above_1 == 1) & (fit_2.pred_prob < 0.0500))) / 25
 
 nrow(subset(data, (NCC_MERP_index.E_or_above_1 == 0) & (fit_2.pred_prob < 0.1000)))
 nrow(subset(data, (NCC_MERP_index.E_or_above_1 == 0) & (fit_2.pred_prob < 0.1000))) / 53
 nrow(subset(data, (NCC_MERP_index.E_or_above_1 == 1) & (fit_2.pred_prob < 0.1000)))
-nrow(subset(data, (NCC_MERP_index.E_or_above_1 == 1) & (fit_2.pred_prob < 0.1000))) / 26
+nrow(subset(data, (NCC_MERP_index.E_or_above_1 == 1) & (fit_2.pred_prob < 0.1000))) / 25
 
 # Session info ----
 
