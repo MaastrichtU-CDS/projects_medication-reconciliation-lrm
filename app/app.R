@@ -172,9 +172,7 @@ server <- function(input, output) {
   })
   
   output$recommendation <- renderText({
-    if((!isTruthy(input$exchange_rate.n_total)) 
-       &
-       (!isTruthy(pred_prob()))) {
+    if((!isTruthy(input$exchange_rate.n_total))) {
       recommendation <- paste("For a recommendation, please submit an answer to the question above.")
       
       return(recommendation)
