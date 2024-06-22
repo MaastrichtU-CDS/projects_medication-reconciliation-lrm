@@ -191,28 +191,28 @@ prop.table(table(data$education, exclude = NULL))
 ### Current diseases ----
 
 current_diseases.list <- strsplit(data$A10a, ",") 
-data$current_diseases.diabetes_1 <- ifelse(lapply(current_diseases.list, function(x) { "1" %in% x}),
+data$current_diseases.diabetes_1 <- ifelse(lapply(current_diseases.list, function(x) { "1" %in% x } ),
                                            1, 
                                            0) 
-data$current_diseases.rheumatoid_arthritis_1 <- ifelse(lapply(current_diseases.list, function(x) { "2" %in% x}),
+data$current_diseases.rheumatoid_arthritis_1 <- ifelse(lapply(current_diseases.list, function(x) { "2" %in% x } ),
                                                        1,
                                                        0) 
-data$current_diseases.asthma_COPD_1 <- ifelse(lapply(current_diseases.list, function(x) { "3" %in% x}),
+data$current_diseases.asthma_COPD_1 <- ifelse(lapply(current_diseases.list, function(x) { "3" %in% x } ),
                                               1,
                                               0) 
-data$current_diseases.cardiovascular_disease_1 <- ifelse(lapply(current_diseases.list, function(x) { "4" %in% x}),
+data$current_diseases.cardiovascular_disease_1 <- ifelse(lapply(current_diseases.list, function(x) { "4" %in% x } ),
                                                          1, 
                                                          0) 
-data$current_diseases.cardiac_arrhythmia_1 <- ifelse(lapply(current_diseases.list, function(x) { "5" %in% x}),
+data$current_diseases.cardiac_arrhythmia_1 <- ifelse(lapply(current_diseases.list, function(x) { "5" %in% x } ),
                                                      1,
                                                      0) 
-data$current_diseases.heart_failure_1 <- ifelse(lapply(current_diseases.list, function(x) { "6" %in% x}),
+data$current_diseases.heart_failure_1 <- ifelse(lapply(current_diseases.list, function(x) { "6" %in% x } ),
                                                 1,
                                                 0) 
-data$current_diseases.cancer_1 <- ifelse(lapply(current_diseases.list, function(x) { "7" %in% x}),
+data$current_diseases.cancer_1 <- ifelse(lapply(current_diseases.list, function(x) { "7" %in% x } ),
                                          1,
                                          0) 
-data$current_diseases.none_of_the_above_1 <- ifelse(lapply(current_diseases.list, function(x) { "8" %in% x}),
+data$current_diseases.none_of_the_above_1 <- ifelse(lapply(current_diseases.list, function(x) { "8" %in% x } ),
                                                     1,
                                                     0) 
 
@@ -342,40 +342,40 @@ data$n_prescribed_medicines.std <- data$n_prescribed_medicines.centered / sd(dat
 ### High-risk medicines ----
 
 high_risk_medicines.list <- strsplit(data$B7a, ",") 
-data$high_risk_medicines.platelet_aggregation_inhibitors_1 <- ifelse(lapply(high_risk_medicines.list, function(x) { "1" %in% x }),
+data$high_risk_medicines.platelet_aggregation_inhibitors_1 <- ifelse(lapply(high_risk_medicines.list, function(x) { "1" %in% x } ),
                                                                      1, 
                                                                      0)  
-data$high_risk_medicines.anticoagulants_1 <- ifelse(lapply(high_risk_medicines.list, function(x) { "2" %in% x }),
+data$high_risk_medicines.anticoagulants_1 <- ifelse(lapply(high_risk_medicines.list, function(x) { "2" %in% x } ),
                                                     1, 
                                                     0) 
-data$high_risk_medicines.NSAIDs_1 <-ifelse(lapply(high_risk_medicines.list, function(x) { "3" %in% x }),
+data$high_risk_medicines.NSAIDs_1 <-ifelse(lapply(high_risk_medicines.list, function(x) { "3" %in% x } ),
                                            1, 
                                            0) 
-data$high_risk_medicines.diuretics_1 <- ifelse(lapply(high_risk_medicines.list, function(x) { "4" %in% x }),
+data$high_risk_medicines.diuretics_1 <- ifelse(lapply(high_risk_medicines.list, function(x) { "4" %in% x } ),
                                                1, 
                                                0) 
-data$high_risk_medicines.RAS_inhibitors_1 <- ifelse(lapply(high_risk_medicines.list, function(x) { "5" %in% x }),
+data$high_risk_medicines.RAS_inhibitors_1 <- ifelse(lapply(high_risk_medicines.list, function(x) { "5" %in% x } ),
                                                     1, 
                                                     0) 
-data$high_risk_medicines.systemic_corticosteroids_1 <- ifelse(lapply(high_risk_medicines.list, function(x) { "6" %in% x }), 
+data$high_risk_medicines.systemic_corticosteroids_1 <- ifelse(lapply(high_risk_medicines.list, function(x) { "6" %in% x } ), 
                                                               1, 
                                                               0) 
-data$high_risk_medicines.opioids_1 <- ifelse(lapply(high_risk_medicines.list, function(x) { "7" %in% x }),
+data$high_risk_medicines.opioids_1 <- ifelse(lapply(high_risk_medicines.list, function(x) { "7" %in% x } ),
                                              1, 
                                              0) 
-data$high_risk_medicines.glucose_lowering_medicines_1 <- ifelse(lapply(high_risk_medicines.list, function(x) { "8" %in% x }),
+data$high_risk_medicines.glucose_lowering_medicines_1 <- ifelse(lapply(high_risk_medicines.list, function(x) { "8" %in% x } ),
                                                                 1, 
                                                                 0) 
-data$high_risk_medicines.psychotropics_1 <- ifelse(lapply(high_risk_medicines.list, function(x) { "9" %in% x }),
+data$high_risk_medicines.psychotropics_1 <- ifelse(lapply(high_risk_medicines.list, function(x) { "9" %in% x } ),
                                                    1, 
                                                    0) 
-data$high_risk_medicines.cardiac_medicines_1 <- ifelse(lapply(high_risk_medicines.list, function(x) { "10" %in% x }),
+data$high_risk_medicines.cardiac_medicines_1 <- ifelse(lapply(high_risk_medicines.list, function(x) { "10" %in% x } ),
                                                        1, 
                                                        0) 
-data$high_risk_medicines.immunosuppressants_1 <- ifelse(lapply(high_risk_medicines.list, function(x) { "11" %in% x }),
+data$high_risk_medicines.immunosuppressants_1 <- ifelse(lapply(high_risk_medicines.list, function(x) { "11" %in% x } ),
                                                         1, 
                                                         0) 
-data$high_risk_medicines.oncolytics_1 <- ifelse(lapply(high_risk_medicines.list, function(x) { "12" %in% x }),
+data$high_risk_medicines.oncolytics_1 <- ifelse(lapply(high_risk_medicines.list, function(x) { "12" %in% x } ),
                                                 1, 
                                                 0) 
 
@@ -416,25 +416,25 @@ prop.table(table(data$high_risk_medicines.yes_1, exclude = NULL))
 
 names(data)[names(data) == "B2b"] <- "medicines_wo_prescription.list"
 medicines_wo_prescription.list <- strsplit(data$medicines_wo_prescription.list, ",") 
-data$medicines_wo_prescription.NSAIDs_1 <- ifelse(lapply(medicines_wo_prescription.list, function(x) { "1" %in% x }), 
+data$medicines_wo_prescription.NSAIDs_1 <- ifelse(lapply(medicines_wo_prescription.list, function(x) { "1" %in% x } ), 
                                                          1, 
                                                          0)
-data$medicines_wo_prescription.proton_pump_inhibitors_1 <- ifelse(lapply(medicines_wo_prescription.list, function(x) { "2" %in% x }), 
+data$medicines_wo_prescription.proton_pump_inhibitors_1 <- ifelse(lapply(medicines_wo_prescription.list, function(x) { "2" %in% x } ), 
                                                                          1, 
                                                                          0)
-data$medicines_wo_prescription.hypericum_1 <- ifelse(lapply(medicines_wo_prescription.list, function(x) { "3" %in% x }), 
+data$medicines_wo_prescription.hypericum_1 <- ifelse(lapply(medicines_wo_prescription.list, function(x) { "3" %in% x } ), 
                                                             1, 
                                                             0)
-data$medicines_wo_prescription.red_yeast_rice_1 <- ifelse(lapply(medicines_wo_prescription.list, function(x) { "4" %in% x }), 
+data$medicines_wo_prescription.red_yeast_rice_1 <- ifelse(lapply(medicines_wo_prescription.list, function(x) { "4" %in% x } ), 
                                                                  1, 
                                                                  0)
-data$medicines_wo_prescription.multivitamin_dietary_supplement_1 <- ifelse(lapply(medicines_wo_prescription.list, function(x) { "5" %in% x }), 
+data$medicines_wo_prescription.multivitamin_dietary_supplement_1 <- ifelse(lapply(medicines_wo_prescription.list, function(x) { "5" %in% x } ), 
                                                                                   1, 
                                                                                   0)
-data$medicines_wo_prescription.other_1 <- ifelse(lapply(medicines_wo_prescription.list, function(x) { "6" %in% x }), 
+data$medicines_wo_prescription.other_1 <- ifelse(lapply(medicines_wo_prescription.list, function(x) { "6" %in% x } ), 
                                                         1, 
                                                         0)
-data$medicines_wo_prescription.none_1 <- ifelse(lapply(medicines_wo_prescription.list, function(x) { "7" %in% x }), 
+data$medicines_wo_prescription.none_1 <- ifelse(lapply(medicines_wo_prescription.list, function(x) { "7" %in% x } ), 
                                                        1, 
                                                        0)
 
@@ -723,61 +723,61 @@ table(data$n_visits_out_all_12m_MUMC.ord, exclude = NULL)
 prop.table(table(data$n_visits_out_all_12m_MUMC.ord, exclude = NULL))
 
 inout_specialty_12m_MUMC.list <- strsplit(data$A150a, ",") 
-data$inout_specialty_12m_MUMC.cardiology_1 <-ifelse(lapply(inout_specialty_12m_MUMC.list, function(x) { "1" %in% x }), 
+data$inout_specialty_12m_MUMC.cardiology_1 <-ifelse(lapply(inout_specialty_12m_MUMC.list, function(x) { "1" %in% x } ), 
                                                     1, 
                                                     0) 
-data$inout_specialty_12m_MUMC.urology_1 <- ifelse(lapply(inout_specialty_12m_MUMC.list, function(x) { "2" %in% x }),
+data$inout_specialty_12m_MUMC.urology_1 <- ifelse(lapply(inout_specialty_12m_MUMC.list, function(x) { "2" %in% x } ),
                                                   1, 
                                                   0)  
-data$inout_specialty_12m_MUMC.psychiatry_1 <- ifelse(lapply(inout_specialty_12m_MUMC.list, function(x) { "3" %in% x }), 
+data$inout_specialty_12m_MUMC.psychiatry_1 <- ifelse(lapply(inout_specialty_12m_MUMC.list, function(x) { "3" %in% x } ), 
                                                      1, 
                                                      0) 
-data$inout_specialty_12m_MUMC.otorhinolaryngology_1 <- ifelse(lapply(inout_specialty_12m_MUMC.list, function(x) { "4" %in% x }),
+data$inout_specialty_12m_MUMC.otorhinolaryngology_1 <- ifelse(lapply(inout_specialty_12m_MUMC.list, function(x) { "4" %in% x } ),
                                                               1, 
                                                               0) 
-data$inout_specialty_12m_MUMC.ophthalmology_1 <-ifelse(lapply(inout_specialty_12m_MUMC.list, function(x) { "5" %in% x }),
+data$inout_specialty_12m_MUMC.ophthalmology_1 <-ifelse(lapply(inout_specialty_12m_MUMC.list, function(x) { "5" %in% x } ),
                                                        1, 
                                                        0) 
-data$inout_specialty_12m_MUMC.internal_medicine_1 <- ifelse(lapply(inout_specialty_12m_MUMC.list, function(x) { "6" %in% x }),
+data$inout_specialty_12m_MUMC.internal_medicine_1 <- ifelse(lapply(inout_specialty_12m_MUMC.list, function(x) { "6" %in% x } ),
                                                             1, 
                                                             0) 
-data$inout_specialty_12m_MUMC.surgery_1 <- ifelse(lapply(inout_specialty_12m_MUMC.list, function(x) { "7" %in% x }),
+data$inout_specialty_12m_MUMC.surgery_1 <- ifelse(lapply(inout_specialty_12m_MUMC.list, function(x) { "7" %in% x } ),
                                                   1, 
                                                   0) 
-data$inout_specialty_12m_MUMC.orthopedics_1 <- ifelse(lapply(inout_specialty_12m_MUMC.list, function(x) { "8" %in% x }),
+data$inout_specialty_12m_MUMC.orthopedics_1 <- ifelse(lapply(inout_specialty_12m_MUMC.list, function(x) { "8" %in% x } ),
                                                       1, 
                                                       0) 
-data$inout_specialty_12m_MUMC.plastic_surgery_1 <- ifelse(lapply(inout_specialty_12m_MUMC.list, function(x) { "9" %in% x }),
+data$inout_specialty_12m_MUMC.plastic_surgery_1 <- ifelse(lapply(inout_specialty_12m_MUMC.list, function(x) { "9" %in% x } ),
                                                           1, 
                                                           0) 
-data$inout_specialty_12m_MUMC.obstetrics_and_gynaecology_1 <- ifelse(lapply(inout_specialty_12m_MUMC.list, function(x) { "10" %in% x }),
+data$inout_specialty_12m_MUMC.obstetrics_and_gynaecology_1 <- ifelse(lapply(inout_specialty_12m_MUMC.list, function(x) { "10" %in% x } ),
                                                                      1,
                                                                      0) 
-data$inout_specialty_12m_MUMC.neurology_1 <- ifelse(lapply(inout_specialty_12m_MUMC.list, function(x) { "11" %in% x }),
+data$inout_specialty_12m_MUMC.neurology_1 <- ifelse(lapply(inout_specialty_12m_MUMC.list, function(x) { "11" %in% x } ),
                                                     1, 
                                                     0) 
-data$inout_specialty_12m_MUMC.dermatology_1 <- ifelse(lapply(inout_specialty_12m_MUMC.list, function(x) { "12" %in% x }),
+data$inout_specialty_12m_MUMC.dermatology_1 <- ifelse(lapply(inout_specialty_12m_MUMC.list, function(x) { "12" %in% x } ),
                                                       1, 
                                                       0) 
-data$inout_specialty_12m_MUMC.gastroenterology_1 <- ifelse(lapply(inout_specialty_12m_MUMC.list, function(x) { "13" %in% x }),
+data$inout_specialty_12m_MUMC.gastroenterology_1 <- ifelse(lapply(inout_specialty_12m_MUMC.list, function(x) { "13" %in% x } ),
                                                            1, 
                                                            0) 
-data$inout_specialty_12m_MUMC.pneumology_1 <- ifelse(lapply(inout_specialty_12m_MUMC.list, function(x) { "14" %in% x }),
+data$inout_specialty_12m_MUMC.pneumology_1 <- ifelse(lapply(inout_specialty_12m_MUMC.list, function(x) { "14" %in% x } ),
                                                      1, 
                                                      0) 
-data$inout_specialty_12m_MUMC.rheumatology_1 <- ifelse(lapply(inout_specialty_12m_MUMC.list, function(x) { "15" %in% x }),
+data$inout_specialty_12m_MUMC.rheumatology_1 <- ifelse(lapply(inout_specialty_12m_MUMC.list, function(x) { "15" %in% x } ),
                                                        1, 
                                                        0) 
-data$inout_specialty_12m_MUMC.do_not_select_1 <- ifelse(lapply(inout_specialty_12m_MUMC.list, function(x) { "16" %in% x }), 
+data$inout_specialty_12m_MUMC.do_not_select_1 <- ifelse(lapply(inout_specialty_12m_MUMC.list, function(x) { "16" %in% x } ), 
                                                         1, 
                                                         0) 
-data$inout_specialty_12m_MUMC.pediatrics_1 <- ifelse(lapply(inout_specialty_12m_MUMC.list, function(x) { "17" %in% x }), 
+data$inout_specialty_12m_MUMC.pediatrics_1 <- ifelse(lapply(inout_specialty_12m_MUMC.list, function(x) { "17" %in% x } ), 
                                                      1, 
                                                      0) 
-data$inout_specialty_12m_MUMC.anesthesiology_1 <- ifelse(lapply(inout_specialty_12m_MUMC.list, function(x) { "18" %in% x }), 
+data$inout_specialty_12m_MUMC.anesthesiology_1 <- ifelse(lapply(inout_specialty_12m_MUMC.list, function(x) { "18" %in% x } ), 
                                                          1, 
                                                          0) 
-data$inout_specialty_12m_MUMC.other_1 <- ifelse(lapply(inout_specialty_12m_MUMC.list, function(x) { "19" %in% x }),
+data$inout_specialty_12m_MUMC.other_1 <- ifelse(lapply(inout_specialty_12m_MUMC.list, function(x) { "19" %in% x } ),
                                                 1, 
                                                 0) 
 
@@ -941,61 +941,61 @@ table(data$inoutER_12m_external_hospital.yes_1, exclude = NULL)
 prop.table(table(data$inoutER_12m_external_hospital.yes_1, exclude = NULL))
 
 inout_specialty_12m_external_hospital.list <- strsplit(data$A150b, ",") 
-data$inout_specialty_12m_external_hospital.cardiology_1 <- ifelse(lapply(inout_specialty_12m_external_hospital.list, function(x) { "1" %in% x }),
+data$inout_specialty_12m_external_hospital.cardiology_1 <- ifelse(lapply(inout_specialty_12m_external_hospital.list, function(x) { "1" %in% x } ),
                                                                   1, 
                                                                   0) 
-data$inout_specialty_12m_external_hospital.urology_1 <- ifelse(lapply(inout_specialty_12m_external_hospital.list, function(x) { "2" %in% x }),
+data$inout_specialty_12m_external_hospital.urology_1 <- ifelse(lapply(inout_specialty_12m_external_hospital.list, function(x) { "2" %in% x } ),
                                                                1, 
                                                                0) 
-data$inout_specialty_12m_external_hospital.psychiatry_1 <- ifelse(lapply(inout_specialty_12m_external_hospital.list, function(x) { "3" %in% x }),
+data$inout_specialty_12m_external_hospital.psychiatry_1 <- ifelse(lapply(inout_specialty_12m_external_hospital.list, function(x) { "3" %in% x } ),
                                                                   1, 
                                                                   0) 
-data$inout_specialty_12m_external_hospital.otorhinolaryngology_1 <- ifelse(lapply(inout_specialty_12m_external_hospital.list, function(x) { "4" %in% x }),
+data$inout_specialty_12m_external_hospital.otorhinolaryngology_1 <- ifelse(lapply(inout_specialty_12m_external_hospital.list, function(x) { "4" %in% x } ),
                                                                            1, 
                                                                            0) 
-data$inout_specialty_12m_external_hospital.ophthalmology_1 <- ifelse(lapply(inout_specialty_12m_external_hospital.list, function(x) { "5" %in% x }), 
+data$inout_specialty_12m_external_hospital.ophthalmology_1 <- ifelse(lapply(inout_specialty_12m_external_hospital.list, function(x) { "5" %in% x } ), 
                                                                      1, 
                                                                      0) 
-data$inout_specialty_12m_external_hospital.internal_medicine_1 <- ifelse(lapply(inout_specialty_12m_external_hospital.list, function(x) { "6" %in% x }), 
+data$inout_specialty_12m_external_hospital.internal_medicine_1 <- ifelse(lapply(inout_specialty_12m_external_hospital.list, function(x) { "6" %in% x } ), 
                                                                          1, 
                                                                          0) 
-data$inout_specialty_12m_external_hospital.surgery_1 <- ifelse(lapply(inout_specialty_12m_external_hospital.list, function(x) { "7" %in% x }),
+data$inout_specialty_12m_external_hospital.surgery_1 <- ifelse(lapply(inout_specialty_12m_external_hospital.list, function(x) { "7" %in% x } ),
                                                                1, 
                                                                0) 
-data$inout_specialty_12m_external_hospital.orthopedics_1 <- ifelse(lapply(inout_specialty_12m_external_hospital.list, function(x) { "8" %in% x }), 
+data$inout_specialty_12m_external_hospital.orthopedics_1 <- ifelse(lapply(inout_specialty_12m_external_hospital.list, function(x) { "8" %in% x } ), 
                                                                    1, 
                                                                    0) 
-data$inout_specialty_12m_external_hospital.plastic_surgery_1 <- ifelse(lapply(inout_specialty_12m_external_hospital.list, function(x) { "9" %in% x }),
+data$inout_specialty_12m_external_hospital.plastic_surgery_1 <- ifelse(lapply(inout_specialty_12m_external_hospital.list, function(x) { "9" %in% x } ),
                                                                        1, 
                                                                        0) 
-data$inout_specialty_12m_external_hospital.obstetrics_and_gynaecology_1 <- ifelse(lapply(inout_specialty_12m_external_hospital.list, function(x) { "10" %in% x }),
+data$inout_specialty_12m_external_hospital.obstetrics_and_gynaecology_1 <- ifelse(lapply(inout_specialty_12m_external_hospital.list, function(x) { "10" %in% x } ),
                                                                                   1, 
                                                                                   0) 
-data$inout_specialty_12m_external_hospital.neurology_1 <- ifelse(lapply(inout_specialty_12m_external_hospital.list, function(x) { "11" %in% x }),
+data$inout_specialty_12m_external_hospital.neurology_1 <- ifelse(lapply(inout_specialty_12m_external_hospital.list, function(x) { "11" %in% x } ),
                                                                  1, 
                                                                  0) 
-data$inout_specialty_12m_external_hospital.dermatology_1 <- ifelse(lapply(inout_specialty_12m_external_hospital.list, function(x) { "12" %in% x }),
+data$inout_specialty_12m_external_hospital.dermatology_1 <- ifelse(lapply(inout_specialty_12m_external_hospital.list, function(x) { "12" %in% x } ),
                                                                    1, 
                                                                    0) 
-data$inout_specialty_12m_external_hospital.gastroenterology_1 <- ifelse(lapply(inout_specialty_12m_external_hospital.list, function(x) { "13" %in% x }),
+data$inout_specialty_12m_external_hospital.gastroenterology_1 <- ifelse(lapply(inout_specialty_12m_external_hospital.list, function(x) { "13" %in% x } ),
                                                                         1, 
                                                                         0) 
-data$inout_specialty_12m_external_hospital.pneumology_1 <- ifelse(lapply(inout_specialty_12m_external_hospital.list, function(x) { "14" %in% x }), 
+data$inout_specialty_12m_external_hospital.pneumology_1 <- ifelse(lapply(inout_specialty_12m_external_hospital.list, function(x) { "14" %in% x } ), 
                                                                   1, 
                                                                   0) 
-data$inout_specialty_12m_external_hospital.rheumatology_1 <- ifelse(lapply(inout_specialty_12m_external_hospital.list, function(x) { "15" %in% x }),
+data$inout_specialty_12m_external_hospital.rheumatology_1 <- ifelse(lapply(inout_specialty_12m_external_hospital.list, function(x) { "15" %in% x } ),
                                                                     1, 
                                                                     0) 
-data$inout_specialty_12m_external_hospital.do_not_select_1 <- ifelse(lapply(inout_specialty_12m_external_hospital.list, function(x) { "16" %in% x }), 
+data$inout_specialty_12m_external_hospital.do_not_select_1 <- ifelse(lapply(inout_specialty_12m_external_hospital.list, function(x) { "16" %in% x } ), 
                                                                      1, 
                                                                      0) 
-data$inout_specialty_12m_external_hospital.pediatrics_1 <- ifelse(lapply(inout_specialty_12m_external_hospital.list, function(x) { "17" %in% x }), 
+data$inout_specialty_12m_external_hospital.pediatrics_1 <- ifelse(lapply(inout_specialty_12m_external_hospital.list, function(x) { "17" %in% x } ), 
                                                                   1, 
                                                                   0) 
-data$inout_specialty_12m_external_hospital.anesthesiology_1 <- ifelse(lapply(inout_specialty_12m_external_hospital.list, function(x) { "18" %in% x }),
+data$inout_specialty_12m_external_hospital.anesthesiology_1 <- ifelse(lapply(inout_specialty_12m_external_hospital.list, function(x) { "18" %in% x } ),
                                                                       1, 
                                                                       0) 
-data$inout_specialty_12m_external_hospital.other_1 <- ifelse(lapply(inout_specialty_12m_external_hospital.list, function(x) { "19" %in% x }),
+data$inout_specialty_12m_external_hospital.other_1 <- ifelse(lapply(inout_specialty_12m_external_hospital.list, function(x) { "19" %in% x } ),
                                                              1, 
                                                              0) 
 
@@ -1565,7 +1565,7 @@ colnames(data_pmsampsize)[5] <- "n_parameters"
 ## Sample size calculation ----
 
 data_pmsampsize$n_participants <- NA
-for (i in 1:nrow(data_pmsampsize)) {
+for(i in 1:nrow(data_pmsampsize)) {
   data_pmsampsize[i, "n_participants"] <- pmsampsize(type = "b", 
                                                      rsquared = data_pmsampsize[i, "RsqCS"], 
                                                      parameters = data_pmsampsize[i, "n_parameters"], 
@@ -1925,7 +1925,7 @@ for(i in 1:n_imp) {
 }
 
 fit_1.stacked_imp <- list()
-for (i in 1:n_imp) {
+for(i in 1:n_imp) {
   fit_1.stacked_imp[[i]] <- impute.transcan(fit_1.imp, 
                                             imputation = i, 
                                             data = data, 
@@ -2021,11 +2021,11 @@ lrtest(fit_1, fit_1.ia)
 
 data$fit_1.pred_prob <- predict(fit_1, data, type = "fitted.ind")
 
-for (i in 1:n_imp) {
+for(i in 1:n_imp) {
   fit_1.stacked_imp[[i]][["fit_1.pred_prob"]] <- as.vector(predict(fit_1, fit_1.stacked_imp[[i]], type = "fitted.ind"))
 }#Pooled model
 
-for (i in 1:n_imp) {
+for(i in 1:n_imp) {
   fit_1.stacked_imp[[i]][["fit_1.stacked_imp.fit_1.pred_prob"]] <- as.vector(predict(fit_1.stacked_imp.fit_1[[i]], fit_1.stacked_imp[[i]], type = "fitted.ind"))
 }#Respective model imputed dataset i
 
@@ -2033,17 +2033,17 @@ for (i in 1:n_imp) {
 
 data$fit_1.lp <- predict(fit_1, data, type = "lp")
 
-for (i in 1:n_imp) {
+for(i in 1:n_imp) {
   fit_1.stacked_imp[[i]][["fit_1.lp"]] <- as.vector(predict(fit_1, fit_1.stacked_imp[[i]], type = "lp"))
 }#Pooled model
 
-for (i in 1:n_imp) {
+for(i in 1:n_imp) {
   fit_1.stacked_imp[[i]][["fit_1.stacked_imp.fit_1.lp"]] <- as.vector(predict(fit_1.stacked_imp.fit_1[[i]], fit_1.stacked_imp[[i]], type = "lp"))
 }#Respective model imputed dataset i
 
 ### Figure boxplots ----
 
-for(i in 1:n_imp){
+for(i in 1:n_imp) {
   fit_1.stacked_imp[[i]][["id"]] <- data$id
 }
 temp <- data.frame(matrix(nrow = 0,
@@ -2052,7 +2052,7 @@ colnames(temp) <- c("id_imp",
                     "id",
                     "y",
                     "fit_1.pred_prob")
-for (i in 1:n_imp) {
+for(i in 1:n_imp) {
   id_imp.temp <- rep(i, nrow(as.data.frame(fit_1.stacked_imp[[i]])))
   
   id.temp <- fit_1.stacked_imp[[i]][["id"]]
@@ -2101,7 +2101,7 @@ pt <- c(0.0333,
         0.0500,
         0.1000)
 
-for (p in pt) {
+for(p in pt) {
   print(p)
   print(prop.table(table(y.fit_1.pred_prob.mean_imp$fit_1.pred_prob.mean_imp >= p)))
 }
@@ -2130,8 +2130,8 @@ colnames(fit_1.app.pt_stats) <- c("fit_1.app.id_imp",
                                   "fit_1.app.fp",
                                   "fit_1.app.fn",
                                   "fit_1.app.n")
-for (i in 1:n_imp){
-  for (p in pt) {
+for(i in 1:n_imp) {
+  for(p in pt) {
     fit_1.app.id_imp.temp <- i
     
     fit_1.app.pt.temp <- p
@@ -2193,7 +2193,7 @@ for(k in 1:nrow(fit_1.app.pt_stats)) {
                                                     (fit_1.app.pt_stats[k, "fit_1.app.pt"] / (1 - fit_1.app.pt_stats[k, "fit_1.app.pt"]))
   
   fit_1.app.pt_stats[k, "fit_1.app.net_benefit.all"] <- fit_1.app.pt_stats[k, "fit_1.app.Ey"] - 
-                                                        ( ( fit_1.app.pt_stats[k, "fit_1.app.pt"] / (1 - fit_1.app.pt_stats[k, "fit_1.app.pt"]) ) * (1 - fit_1.app.pt_stats[k, "fit_1.app.Ey"] ) )
+                                                        ((fit_1.app.pt_stats[k, "fit_1.app.pt"] / (1 - fit_1.app.pt_stats[k, "fit_1.app.pt"]) ) * (1 - fit_1.app.pt_stats[k, "fit_1.app.Ey"]))
   
   fit_1.app.pt_stats[k, "fit_1.app.acc"] <- (fit_1.app.pt_stats[k, "fit_1.app.tp"] +  fit_1.app.pt_stats[k, "fit_1.app.tn"]) /
                                             (fit_1.app.pt_stats[k, "fit_1.app.tp"] + fit_1.app.pt_stats[k, "fit_1.app.tn"] + fit_1.app.pt_stats[k, "fit_1.app.fp"] + fit_1.app.pt_stats[k, "fit_1.app.fn"])
@@ -2367,7 +2367,7 @@ for(r in 1:n_rep) {
                                pr = FALSE)
   
   fit_1.boot.fit_1.stacked_imp <- list()
-  for (i in 1:n_imp) {
+  for(i in 1:n_imp) {
     fit_1.boot.fit_1.stacked_imp[[i]] <- impute.transcan(fit_1.boot.imp, 
                                                    imputation = i, 
                                                    data = fit_1.boot.data, 
@@ -2406,13 +2406,13 @@ for(r in 1:n_rep) {
   
   ##Bootstrap performance
   
-  for (i in 1:n_imp) {
+  for(i in 1:n_imp) {
     fit_1.boot.fit_1.stacked_imp[[i]][["fit_1.boot.fit_1.stacked_imp.fit_1.pred_prob"]] <- as.vector(predict(fit_1.boot.fit_1.stacked_imp.fit_1[[i]], fit_1.boot.fit_1.stacked_imp[[i]], type = "fitted.ind"))
   }
   
   ##Test performance
   
-  for (i in 1:n_imp) {
+  for(i in 1:n_imp) {
     fit_1.test.fit_1.stacked_imp[[i]][["fit_1.test.fit_1.stacked_imp.fit_1.pred_prob"]] <- as.vector(predict(fit_1.test.fit_1.stacked_imp.fit_1[[i]], fit_1.test.fit_1.stacked_imp[[i]], type = "fitted.ind"))
   }
   
@@ -2433,7 +2433,7 @@ for(r in 1:n_rep) {
                                                    "fit_1.boot.Ey",
                                                    "fit_1.boot.RsqCS",
                                                    "fit_1.boot.RsqN")
-  for (i in 1:n_imp){
+  for(i in 1:n_imp) {
     fit_1.boot.id_imp.fit_1.boot.RsqN[i, "fit_1.boot.id_imp"] <- i
     
     fit_1.boot.id_imp.fit_1.boot.RsqN[i, "fit_1.boot.deviance.null"] <- - 2 * sum(log(mean(fit_1.boot.fit_1.stacked_imp[[i]][["fit_1.boot.fit_1.stacked_imp.fit_1.pred_prob"]]) * fit_1.boot.fit_1.stacked_imp[[i]][["y"]] + (1 - mean(fit_1.boot.fit_1.stacked_imp[[i]][["fit_1.boot.fit_1.stacked_imp.fit_1.pred_prob"]])) * (1 - fit_1.boot.fit_1.stacked_imp[[i]][["y"]])))
@@ -2470,7 +2470,7 @@ for(r in 1:n_rep) {
                                                    "fit_1.test.Ey",
                                                    "fit_1.test.RsqCS",
                                                    "fit_1.test.RsqN")
-  for (i in 1:n_imp){
+  for(i in 1:n_imp) {
     fit_1.test.id_imp.fit_1.test.RsqN[i, "fit_1.test.id_imp"] <- i
     
     fit_1.test.id_imp.fit_1.test.RsqN[i, "fit_1.test.deviance.null"] <- - 2 * sum(log(mean(fit_1.test.fit_1.stacked_imp[[i]][["fit_1.test.fit_1.stacked_imp.fit_1.pred_prob"]]) * fit_1.test.fit_1.stacked_imp[[i]][["y"]] + (1 - mean(fit_1.test.fit_1.stacked_imp[[i]][["fit_1.test.fit_1.stacked_imp.fit_1.pred_prob"]])) * (1 - fit_1.test.fit_1.stacked_imp[[i]][["y"]])))
@@ -2504,7 +2504,7 @@ for(r in 1:n_rep) {
                                                          ncol = 2))
   colnames(fit_1.boot.id_imp.fit_1.boot.C) <- c("fit_1.boot.id_imp",
                                                 "fit_1.boot.C")
-  for (i in 1:n_imp) {
+  for(i in 1:n_imp) {
     fit_1.boot.id_imp.fit_1.boot.C[i, "fit_1.boot.id_imp"] <- i
     
     fit_1.boot.id_imp.fit_1.boot.C[i, "fit_1.boot.C"] <- val.prob(fit_1.boot.fit_1.stacked_imp[[i]][["fit_1.boot.fit_1.stacked_imp.fit_1.pred_prob"]], fit_1.boot.fit_1.stacked_imp[[i]][["y"]], pl = FALSE)[["C (ROC)"]]
@@ -2522,7 +2522,7 @@ for(r in 1:n_rep) {
                                                          ncol = 2))
   colnames(fit_1.test.id_imp.fit_1.test.C) <- c("fit_1.test.id_imp",
                                                 "fit_1.test.C")
-  for (i in 1:n_imp) {
+  for(i in 1:n_imp) {
     fit_1.test.id_imp.fit_1.test.C[i, "fit_1.test.id_imp"] <- i
     
     fit_1.test.id_imp.fit_1.test.C[i, "fit_1.test.C"] <- val.prob(fit_1.test.fit_1.stacked_imp[[i]][["fit_1.test.fit_1.stacked_imp.fit_1.pred_prob"]], fit_1.test.fit_1.stacked_imp[[i]][["y"]], pl = FALSE)[["C (ROC)"]]
@@ -2546,8 +2546,8 @@ for(r in 1:n_rep) {
                                      "fit_1.boot.fp",
                                      "fit_1.boot.fn",
                                      "fit_1.boot.n")
-  for (i in 1:n_imp){
-    for (p in pt) {
+  for(i in 1:n_imp) {
+    for(p in pt) {
       fit_1.boot.id_imp.temp <- i
       
       fit_1.boot.pt.temp <- p
@@ -2691,8 +2691,8 @@ for(r in 1:n_rep) {
                                      "fit_1.test.fp",
                                      "fit_1.test.fn",
                                      "fit_1.test.n")
-  for (i in 1:n_imp){
-    for (p in pt) {
+  for(i in 1:n_imp) {
+    for(p in pt) {
       fit_1.test.id_imp.temp <- i
       
       fit_1.test.pt.temp <- p
@@ -2886,7 +2886,7 @@ fit_1.boot.test.pt_stats.mean_imp.0_NA <- subset(fit_1.boot.test.pt_stats.mean_i
                                                                                     &
                                                                                     (fit_1.test.npv.mean_imp.n_NA == 0))
 
-for (p in pt){
+for(p in pt) {
   print(p)
   print(nrow(subset(fit_1.boot.test.pt_stats.mean_imp, fit_1.boot.test.pt == p)))
   print(nrow(subset(fit_1.boot.test.pt_stats.mean_imp.0_NA, fit_1.boot.test.pt == p)))
@@ -3029,7 +3029,7 @@ for(i in 1:n_imp) {
 }
 
 fit_2.stacked_imp <- list()
-for (i in 1:n_imp) {
+for(i in 1:n_imp) {
   fit_2.stacked_imp[[i]] <- impute.transcan(fit_2.imp, 
                                             imputation = i, 
                                             data = data, 
@@ -3140,11 +3140,11 @@ lrtest(fit_2, fit_2.ia)
 
 data$fit_2.pred_prob <- predict(fit_2, data, type = "fitted.ind")
 
-for (i in 1:n_imp) {
+for(i in 1:n_imp) {
   fit_2.stacked_imp[[i]][["fit_2.pred_prob"]] <- as.vector(predict(fit_2, fit_2.stacked_imp[[i]], type = "fitted.ind"))
 }#Pooled model
 
-for (i in 1:n_imp) {
+for(i in 1:n_imp) {
   fit_2.stacked_imp[[i]][["fit_2.stacked_imp.fit_2.pred_prob"]] <- as.vector(predict(fit_2.stacked_imp.fit_2[[i]], fit_2.stacked_imp[[i]], type = "fitted.ind"))
 }#Respective model imputed dataset i
 
@@ -3152,17 +3152,17 @@ for (i in 1:n_imp) {
 
 data$fit_2.lp <- predict(fit_2, data, type = "lp")
 
-for (i in 1:n_imp) {
+for(i in 1:n_imp) {
   fit_2.stacked_imp[[i]][["fit_2.lp"]] <- as.vector(predict(fit_2, fit_2.stacked_imp[[i]], type = "lp"))
 }#Pooled model
 
-for (i in 1:n_imp) {
+for(i in 1:n_imp) {
   fit_2.stacked_imp[[i]][["fit_2.stacked_imp.fit_2.lp"]] <- as.vector(predict(fit_2.stacked_imp.fit_2[[i]], fit_2.stacked_imp[[i]], type = "lp"))
 }#Respective model imputed dataset i
 
 ### Figure boxplots ----
 
-for(i in 1:n_imp){
+for(i in 1:n_imp) {
   fit_2.stacked_imp[[i]][["id"]] <- data$id
 }
 temp <- data.frame(matrix(nrow = 0,
@@ -3171,7 +3171,7 @@ colnames(temp) <- c("id_imp",
                     "id",
                     "y",
                     "fit_2.pred_prob")
-for (i in 1:n_imp) {
+for(i in 1:n_imp) {
   id_imp.temp <- rep(i, nrow(as.data.frame(fit_2.stacked_imp[[i]])))
   
   id.temp <- fit_2.stacked_imp[[i]][["id"]]
@@ -3221,7 +3221,7 @@ plot.fit_1_and_fit_2 <- plot_grid(plot.fit_1,
 
 ### Screening rate using pt ----
 
-for (p in pt) {
+for(p in pt) {
   print(p)
   print(prop.table(table(y.fit_2.pred_prob.mean_imp$fit_2.pred_prob.mean_imp >= p)))
 }
@@ -3250,8 +3250,8 @@ colnames(fit_2.app.pt_stats) <- c("fit_2.app.id_imp",
                                   "fit_2.app.fp",
                                   "fit_2.app.fn",
                                   "fit_2.app.n")
-for (i in 1:n_imp){
-  for (p in pt) {
+for(i in 1:n_imp) {
+  for(p in pt) {
     fit_2.app.id_imp.temp <- i
     
     fit_2.app.pt.temp <- p
@@ -3485,7 +3485,7 @@ for(r in 1:n_rep) {
                                pr = FALSE)
   
   fit_2.boot.fit_2.stacked_imp <- list()
-  for (i in 1:n_imp) {
+  for(i in 1:n_imp) {
     fit_2.boot.fit_2.stacked_imp[[i]] <- impute.transcan(fit_2.boot.imp, 
                                                          imputation = i, 
                                                          data = fit_2.boot.data, 
@@ -3519,13 +3519,13 @@ for(r in 1:n_rep) {
   
   ##Bootstrap performance
   
-  for (i in 1:n_imp) {
+  for(i in 1:n_imp) {
     fit_2.boot.fit_2.stacked_imp[[i]][["fit_2.boot.fit_2.stacked_imp.fit_2.pred_prob"]] <- as.vector(predict(fit_2.boot.fit_2.stacked_imp.fit_2[[i]], fit_2.boot.fit_2.stacked_imp[[i]], type = "fitted.ind"))
   }
   
   ##Test performance
   
-  for (i in 1:n_imp) {
+  for(i in 1:n_imp) {
     fit_2.test.fit_2.stacked_imp[[i]][["fit_2.test.fit_2.stacked_imp.fit_2.pred_prob"]] <- as.vector(predict(fit_2.test.fit_2.stacked_imp.fit_2[[i]], fit_2.test.fit_2.stacked_imp[[i]], type = "fitted.ind"))
   }
   
@@ -3546,7 +3546,7 @@ for(r in 1:n_rep) {
                                                    "fit_2.boot.Ey",
                                                    "fit_2.boot.RsqCS",
                                                    "fit_2.boot.RsqN")
-  for (i in 1:n_imp){
+  for(i in 1:n_imp) {
     fit_2.boot.id_imp.fit_2.boot.RsqN[i, "fit_2.boot.id_imp"] <- i
     
     fit_2.boot.id_imp.fit_2.boot.RsqN[i, "fit_2.boot.deviance.null"] <- - 2 * sum(log(mean(fit_2.boot.fit_2.stacked_imp[[i]][["fit_2.boot.fit_2.stacked_imp.fit_2.pred_prob"]]) * fit_2.boot.fit_2.stacked_imp[[i]][["y"]] + (1 - mean(fit_2.boot.fit_2.stacked_imp[[i]][["fit_2.boot.fit_2.stacked_imp.fit_2.pred_prob"]])) * (1 - fit_2.boot.fit_2.stacked_imp[[i]][["y"]])))
@@ -3583,7 +3583,7 @@ for(r in 1:n_rep) {
                                                    "fit_2.test.Ey",
                                                    "fit_2.test.RsqCS",
                                                    "fit_2.test.RsqN")
-  for (i in 1:n_imp){
+  for(i in 1:n_imp) {
     fit_2.test.id_imp.fit_2.test.RsqN[i, "fit_2.test.id_imp"] <- i
     
     fit_2.test.id_imp.fit_2.test.RsqN[i, "fit_2.test.deviance.null"] <- - 2 * sum(log(mean(fit_2.test.fit_2.stacked_imp[[i]][["fit_2.test.fit_2.stacked_imp.fit_2.pred_prob"]]) * fit_2.test.fit_2.stacked_imp[[i]][["y"]] + (1 - mean(fit_2.test.fit_2.stacked_imp[[i]][["fit_2.test.fit_2.stacked_imp.fit_2.pred_prob"]])) * (1 - fit_2.test.fit_2.stacked_imp[[i]][["y"]])))
@@ -3617,7 +3617,7 @@ for(r in 1:n_rep) {
                                                          ncol = 2))
   colnames(fit_2.boot.id_imp.fit_2.boot.C) <- c("fit_2.boot.id_imp",
                                                 "fit_2.boot.C")
-  for (i in 1:n_imp) {
+  for(i in 1:n_imp) {
     fit_2.boot.id_imp.fit_2.boot.C[i, "fit_2.boot.id_imp"] <- i
     
     fit_2.boot.id_imp.fit_2.boot.C[i, "fit_2.boot.C"] <- val.prob(fit_2.boot.fit_2.stacked_imp[[i]][["fit_2.boot.fit_2.stacked_imp.fit_2.pred_prob"]], fit_2.boot.fit_2.stacked_imp[[i]][["y"]], pl = FALSE)[["C (ROC)"]]
@@ -3635,7 +3635,7 @@ for(r in 1:n_rep) {
                                                          ncol = 2))
   colnames(fit_2.test.id_imp.fit_2.test.C) <- c("fit_2.test.id_imp",
                                                 "fit_2.test.C")
-  for (i in 1:n_imp) {
+  for(i in 1:n_imp) {
     fit_2.test.id_imp.fit_2.test.C[i, "fit_2.test.id_imp"] <- i
     
     fit_2.test.id_imp.fit_2.test.C[i, "fit_2.test.C"] <- val.prob(fit_2.test.fit_2.stacked_imp[[i]][["fit_2.test.fit_2.stacked_imp.fit_2.pred_prob"]], fit_2.test.fit_2.stacked_imp[[i]][["y"]], pl = FALSE)[["C (ROC)"]]
@@ -3659,8 +3659,8 @@ for(r in 1:n_rep) {
                                      "fit_2.boot.fp",
                                      "fit_2.boot.fn",
                                      "fit_2.boot.n")
-  for (i in 1:n_imp){
-    for (p in pt) {
+  for(i in 1:n_imp) {
+    for(p in pt) {
       fit_2.boot.id_imp.temp <- i
       
       fit_2.boot.pt.temp <- p
@@ -3804,8 +3804,8 @@ for(r in 1:n_rep) {
                                      "fit_2.test.fp",
                                      "fit_2.test.fn",
                                      "fit_2.test.n")
-  for (i in 1:n_imp){
-    for (p in pt) {
+  for(i in 1:n_imp) {
+    for(p in pt) {
       fit_2.test.id_imp.temp <- i
       
       fit_2.test.pt.temp <- p
@@ -3999,7 +3999,7 @@ fit_2.boot.test.pt_stats.mean_imp.0_NA <- subset(fit_2.boot.test.pt_stats.mean_i
                                                                                     &
                                                                                     (fit_2.test.npv.mean_imp.n_NA == 0))
 
-for (p in pt){
+for(p in pt) {
   print(p)
   print(nrow(subset(fit_2.boot.test.pt_stats.mean_imp, fit_2.boot.test.pt == p)))
   print(nrow(subset(fit_2.boot.test.pt_stats.mean_imp.0_NA, fit_2.boot.test.pt == p)))
