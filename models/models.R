@@ -29,7 +29,6 @@ model_1 <- function(age,
 # model 2 ----
 
 model_2 <- function(age,
-                    sex.male_1,
                     n_prescribed_medicines,
                     high_risk_medicines.yes_1,
                     health_literacy_composite.insufficient_1) {
