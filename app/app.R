@@ -7,7 +7,6 @@ library(rms)
 # Model ----
 
 model_2 <- function(age,
-                    sex.male_1,
                     n_prescribed_medicines,
                     high_risk_medicines.yes_1,
                     health_literacy_composite.insufficient_1) {
@@ -45,11 +44,6 @@ ui <- fluidPage(
                    value = NA,
                    min = 0,
                    max = 100),
-      radioButtons("sex.male_1", 
-                   label = h6(strong("Sex")),
-                   choices = list("Male" = 1,
-                                  "Female" = 0),
-                   selected = NA),
       numericInput("n_prescribed_medicines", 
                    label = HTML("<b>Number of prescribed medicines</b>
                                  <br/>
@@ -118,8 +112,6 @@ server <- function(input, output) {
         & 
         (input$age <= 100)
         & 
-        (isTruthy(input$sex.male_1))
-        &
         (isTruthy(input$n_prescribed_medicines))
         &
         (input$n_prescribed_medicines >= 0)
@@ -130,7 +122,6 @@ server <- function(input, output) {
         &
         (isTruthy(input$health_literacy_composite.insufficient_1))) {
       pred_prob <- model_2(age = input$age,
-                           sex.male_1 = as.numeric(input$sex.male_1),
                            n_prescribed_medicines = input$n_prescribed_medicines,
                            high_risk_medicines.yes_1 = as.numeric(input$high_risk_medicines.yes_1),
                            health_literacy_composite.insufficient_1 = as.numeric(input$health_literacy_composite.insufficient_1)) 
