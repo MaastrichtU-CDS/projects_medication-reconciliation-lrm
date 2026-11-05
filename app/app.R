@@ -6,16 +6,16 @@ library(rms)
 
 # Model ----
 
-model_2 <- function(age,
-                    n_prescribed_medicines,
-                    high_risk_medicines.yes_1,
-                    health_literacy_composite.insufficient_1) {
+model <- function(age,
+                  n_prescribed_medicines,
+                  high_risk_medicines.yes_1,
+                  health_literacy_composite.insufficient_1) {
   lp <- 
-    3.9586 * -1 +
-    0.0406 * ((age - 59.2184) / 18.5225) +
-    0.3084 * ((n_prescribed_medicines - 5.9345) / 4.7231) +
-    0.6339 * high_risk_medicines.yes_1 +  
-    0.7827 * health_literacy_composite.insufficient_1
+    4.1469 * -1 +
+    0.0414 * ((age - 59.4536) / 18.2387) +
+    0.3202 * ((n_prescribed_medicines - 5.9212) / 4.7705) +
+    0.8094 * high_risk_medicines.yes_1 +  
+    0.6208 * health_literacy_composite.insufficient_1
   
   pred_prob <- 1 / (1 + exp(-lp))
   
@@ -121,10 +121,10 @@ server <- function(input, output) {
         (isTruthy(input$high_risk_medicines.yes_1))
         &
         (isTruthy(input$health_literacy_composite.insufficient_1))) {
-      pred_prob <- model_2(age = input$age,
-                           n_prescribed_medicines = input$n_prescribed_medicines,
-                           high_risk_medicines.yes_1 = as.numeric(input$high_risk_medicines.yes_1),
-                           health_literacy_composite.insufficient_1 = as.numeric(input$health_literacy_composite.insufficient_1)) 
+      pred_prob <- model(age = input$age,
+                         n_prescribed_medicines = input$n_prescribed_medicines,
+                         high_risk_medicines.yes_1 = as.numeric(input$high_risk_medicines.yes_1),
+                         health_literacy_composite.insufficient_1 = as.numeric(input$health_literacy_composite.insufficient_1)) 
       
       return(pred_prob)
     } else {
@@ -133,33 +133,33 @@ server <- function(input, output) {
   })
   
   output$pred_prob.text <- renderText({ 
-      if (isTruthy(pred_prob())) {
-        pred_probx100 <- round(pred_prob(), digits = 4) * 100
-        
-        pred_prob.text <- paste0("The estimated probability this patient needs an adjustment to their medication policy is ", pred_probx100, "%.")
-        
-        return(pred_prob.text)
-      } else if ((!isTruthy(pred_prob()))
-                 &
-                 (isTruthy(input$age)
-                  &
-                  ((input$age < 0)
-                   |
-                   (input$age > 100)))
+    if (isTruthy(pred_prob())) {
+      pred_probx100 <- round(pred_prob(), digits = 4) * 100
+      
+      pred_prob.text <- paste0("The estimated probability this patient needs an adjustment to their medication policy is ", pred_probx100, "%.")
+      
+      return(pred_prob.text)
+    } else if ((!isTruthy(pred_prob()))
+               &
+               (isTruthy(input$age)
+                &
+                ((input$age < 0)
                  |
-                 (isTruthy(input$n_prescribed_medicines)
-                  &
-                  ((input$n_prescribed_medicines < 0)
-                   |
-                   (input$n_prescribed_medicines > 20)))) {
-        pred_prob.text <- paste("Out of range values were detected. Please review your submission.")
-        
-        return(pred_prob.text)
-        } else {
-          pred_prob.text <- paste("Please complete the form above and press submit.")
-          
-          return(pred_prob.text)
-        }
+                 (input$age > 100)))
+               |
+               (isTruthy(input$n_prescribed_medicines)
+                &
+                ((input$n_prescribed_medicines < 0)
+                 |
+                 (input$n_prescribed_medicines > 20)))) {
+      pred_prob.text <- paste("Out of range values were detected. Please review your submission.")
+      
+      return(pred_prob.text)
+    } else {
+      pred_prob.text <- paste("Please complete the form above and press submit.")
+      
+      return(pred_prob.text)
+    }
   })
   
   output$recommendation <- renderText({
@@ -167,25 +167,25 @@ server <- function(input, output) {
       recommendation <- paste("For a recommendation, please submit an answer to the question above.")
       
       return(recommendation)
-      } else if ((isTruthy(input$exchange_rate.n_total)) 
-                 &
-                 (!isTruthy(pred_prob()))) {
-        recommendation <- paste("Please review your submitted predictor values.")
-                   
-        return(recommendation)
-      } else if (input$exchange_rate.n_total <= 1) {
-        recommendation <-  paste("Please submit a number above one.")
-        
-        return(recommendation)
-      } else if(pred_prob() >= (1 / (input$exchange_rate.n_total))) {
-        recommendation <- paste("It is recommended to provide medication reconciliation.")
-        
-        return(recommendation)
-      } else {
-        recommendation <- paste("It is not recommended to provide medication reconciliation.")
-        
-        return(recommendation)
-      }
+    } else if ((isTruthy(input$exchange_rate.n_total)) 
+               &
+               (!isTruthy(pred_prob()))) {
+      recommendation <- paste("Please review your submitted predictor values.")
+      
+      return(recommendation)
+    } else if (input$exchange_rate.n_total <= 1) {
+      recommendation <-  paste("Please submit a number above one.")
+      
+      return(recommendation)
+    } else if(pred_prob() >= (1 / (input$exchange_rate.n_total))) {
+      recommendation <- paste("It is recommended to provide medication reconciliation.")
+      
+      return(recommendation)
+    } else {
+      recommendation <- paste("It is not recommended to provide medication reconciliation.")
+      
+      return(recommendation)
+    }
   })
 }
 
